@@ -142,10 +142,10 @@
       <img src="./static/images/teaser.png"
                  alt="Interpolate start reference image."/>
       <h2 class="subtitle has-text-centered">
-        Given a <b><i>single</i></b> image representing the given subject in the <b><i>open domain </i></b>
-        (<b><i>any subjects</i></b>, portrait painting, favorite toys, etc.), 
+        Given a <b>single</b> image representing the given subject in the <b>open domain</b>
+        (<b>any subjects</b>, portrait painting, favorite toys, etc.), 
         RealCustom could generate realistic images that consistently adhere to the given text for the given subjects 
-        in <b><i>real-time</i></b> (without any test-time optimization steps).
+        in <b>real-time</b> (without any test-time optimization steps).
       </h2>
     </div>
   </div>
@@ -218,7 +218,24 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            While large-scale pre-trained text-to-image models can synthesize diverse and high-quality human-centric images, an intractable problem is how to preserve the face identity for conditioned face images. Existing methods either require time-consuming optimization for each face-identity or learning an efficient encoder at the cost of harming the editability of models. In this work, we present an optimization-free method for each face identity, meanwhile keeping the editability for text-to-image models. Specifically, we propose a novel face-identity encoder to learn an accurate representation of human faces, which applies multi-scale face features followed by a multi-embedding projector to directly generate the pseudo words in the text embedding space. Besides, we propose self-augmented editability learning to enhance the editability of models, which is achieved by constructing paired generated face and edited face images using celebrity names, aiming at transferring mature ability of off-the-shelf text-to-image models in celebrity faces to unseen faces. Extensive experiments show that our methods can generate identity-preserved images under different scenes at a much faster speed.
+            Text-to-image customization, which aims to synthesize text-driven images for the given subjects, 
+            has recently revolutionized content creation. Existing works follow the
+            pseudo-word paradigm, i.e., represent the given subjects as
+            pseudo-words and then compose them with the given text.
+            However, the inherent entangled influence scope of pseudo-
+            words with the given text results in a dual-optimum paradox, i.e., the similarity of the given subjects and the 
+            controllability of the given text could not be optimal simultaneously. We present RealCustom that, 
+            for the first time, disentangles similarity from controllability by precisely limiting
+            subject influence to relevant parts only, achieved by gradually narrowing real text word from its general connotation
+            to the specific subject and using its cross-attention to distinguish relevance. Specifically, RealCustom introduces a
+            novel “train-inference” decoupled framework: (1) during
+            training, RealCustom learns general alignment between visual conditions to original textual conditions by a novel
+            adaptive scoring module to adaptively modulate influence
+            quantity; (2) during inference, a novel adaptive mask guidance strategy is proposed to iteratively update the influence
+            scope and influence quantity of the given subjects to gradually narrow the generation of the real text word. Com-
+            prehensive experiments demonstrate the superior real-time
+            customization ability of RealCustom in the open domain,
+            achieving both unprecedented similarity of the given subjects and controllability of the given text for the first time.
           </p>
           <!-- <p>
             Our approach augments neural radiance fields
