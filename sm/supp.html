@@ -1,0 +1,497 @@
+<link href="https://fonts.cdnfonts.com/css/chalkduster" rel="stylesheet">
+<style>
+  @import url('https://fonts.cdnfonts.com/css/chalkduster');
+</style>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <title>StyleCrafter: Enhancing Stylized Text-to-Video Generation with Style Adapter</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <button style="position: fixed;right: 15px;top:  50%;height: 100px;width: 140px; font-size: 20px;" type="button"><a
+      href="#top">Back to top</a></button>
+  <div class="page-container">
+    <h1 align="center">StyleCrafter: Enhancing Stylized Text-to-Video Generation with Style Adapter</h1>
+    <!-- <h1 align="center">Paper ID #</h1> -->
+    <h1 align="center">Supplementary Material</h1>
+
+    <p align="center">&nbsp;</p>
+    <a href="#top"></a>
+    <ul style="font-size: 24px;">
+      <li><a href="#comp_single_ref">Comparison to Baselines(Single Reference)</a></li>
+      <li><a href="#comp_multi_ref">Comparison to Baselines(Multiple Reference)</a></li>
+      <li><a href="#ablation_study">Ablation Study</a></li>
+      <li><a href="#result_depth">StyleCrafter Combined with Depth Control</a></li>
+      <li><a href="#result_more">Additional Results of StyleCrafter</a></li>
+      <li><a href="#reference">References</a></li>
+    </ul>
+    <!-- <p><br><span class="emph">We recommend watching all images in full screen. Click on the images for seeing them in full scale.</span></p> -->
+
+    <!------------------ BEGIN SECTION ------------------>
+
+    <p>&nbsp;</p>
+    <hr>
+
+    <h1 id="comp_single_ref" align="left"><a name="image-results" id="image-results"></a>Comparison to Baselines(Single Reference) </h1>
+
+
+    <p align="left">
+      We present the comparison results of our method with other single reference style-guided Text-to-Video methods, including:
+      <ul>
+        <li>VideoComposer<a href="#videocomposer">[1]</a></li>
+        <li>VideoCrafter*(VideoCrafter<a href="#videocrafter">[2]</a> equipped with GPT-4v<a href="#gpt4v">[3]</a>)</li>
+        <li>Gen2*(Gen2<a href="#gen2">[4]</a> equipped with GPT-4v<a href="#gpt4v">[3]</a>)</li>
+      </ul>
+
+    </p>
+
+
+    <table width="600" align="center">
+      <colgroup>
+        <col style="width: 20.9%;">
+        <col style="width: 13.1%;">
+        <col style="width: 20.9%;">
+        <col style="width: 24.2%;">
+        <col style="width: 20.9%;">
+      </colgroup>
+      <tbody>
+        <th style="font-size: 20px">Style Reference</th>
+        <th style="font-size: 20px">VideoComposer(<a href="#videocomposer">[1]</a>)</th>
+        <th style="font-size: 20px">VideoCrafter*(<a href="#videocrafter">[2]</a>)</th>
+        <th style="font-size: 20px">Gen2*(<a href="#gen2">[4]</a>)</th>
+        <th style="font-size: 20px">Ours</th>
+        <tr><th class="prompt" colspan="5">"A chef preparing meals in kitchen."</th></tr>
+        <tr>
+          <td><a href="assets/stylepic/oil_paint_2.jpg"> <img height="150" class="center" src="assets/stylepic/oil_paint_2.jpg" alt=""></a></td>
+          <td><a href="assets/comp_single_ref/vidCom/1.mp4"><video height="150" src="assets/comp_single_ref/vidCom/1.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_single_ref/vidCraf/1.mp4"><video height="150" src="assets/comp_single_ref/vidCraf/1.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_single_ref/gen2/1.mp4"><video height="150" src="assets/comp_single_ref/gen2/1.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_single_ref/ours/1.mp4"><video height="150" src="assets/comp_single_ref/ours/1.mp4" autoplay loop controls muted /> ></video></a></td>
+        </tr>
+        <tr><th class="prompt" colspan="5">"A wolf walking stealthily through the forest."</th></tr>
+        <tr>
+          <td><a href="assets/stylepic/digital_art_1.jpg"> <img height="150" class="center" src="assets/stylepic/digital_art_1.jpg" alt=""></a></td>
+          <td><a href="assets/comp_single_ref/vidCom/2.mp4"><video height="150" src="assets/comp_single_ref/vidCom/2.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_single_ref/vidCraf/2.mp4"><video height="150" src="assets/comp_single_ref/vidCraf/2.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_single_ref/gen2/2.mp4"><video height="150" src="assets/comp_single_ref/gen2/2.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_single_ref/ours/2.mp4"><video height="150" src="assets/comp_single_ref/ours/2.mp4" autoplay loop controls muted /> ></video></a></td>
+        </tr>
+        <tr><th class="prompt" colspan="5">"A field of sunflowers on a sunny day."</th></tr>
+        <tr>
+          <td><a href="assets/stylepic/anime_1.jpg"> <img height="150" class="center" src="assets/stylepic/anime_1.jpg" alt=""></a></td>
+          <td><a href="assets/comp_single_ref/vidCom/3.mp4"><video height="150" src="assets/comp_single_ref/vidCom/3.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_single_ref/vidCraf/3.mp4"><video height="150" src="assets/comp_single_ref/vidCraf/3.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_single_ref/gen2/3.mp4"><video height="150" src="assets/comp_single_ref/gen2/3.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_single_ref/ours/3.mp4"><video height="150" src="assets/comp_single_ref/ours/3.mp4" autoplay loop controls muted /> ></video></a></td>
+        </tr>
+        <tr><th class="prompt" colspan="5">"A rocketship heading towards the moon."</th></tr>
+        <tr>
+          <td><a href="assets/stylepic/anime_2.jpg"> <img height="150" class="center" src="assets/stylepic/anime_2.jpg" alt=""></a></td>
+          <td><a href="assets/comp_single_ref/vidCom/4.mp4"><video height="150" src="assets/comp_single_ref/vidCom/4.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_single_ref/vidCraf/4.mp4"><video height="150" src="assets/comp_single_ref/vidCraf/4.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_single_ref/gen2/4.mp4"><video height="150" src="assets/comp_single_ref/gen2/4.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_single_ref/ours/4.mp4"><video height="150" src="assets/comp_single_ref/ours/4.mp4" autoplay loop controls muted /> ></video></a></td>
+        </tr>
+        <tr><th class="prompt" colspan="5">"A bear catching fish in a river."</th></tr>
+        <tr>
+          <td><a href="assets/stylepic/watercolor_1.jpg"> <img height="150" class="center" src="assets/stylepic/watercolor_1.jpg" alt=""></a></td>
+          <td><a href="assets/comp_single_ref/vidCom/5.mp4"><video height="150" src="assets/comp_single_ref/vidCom/5.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_single_ref/vidCraf/5.mp4"><video height="150" src="assets/comp_single_ref/vidCraf/5.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_single_ref/gen2/5.mp4"><video height="150" src="assets/comp_single_ref/gen2/5.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_single_ref/ours/5.mp4"><video height="150" src="assets/comp_single_ref/ours/5.mp4" autoplay loop controls muted /> ></video></a></td>
+        </tr>
+        <tr><th class="prompt" colspan="5">"A knight riding a horse through a field."</th></tr>
+        <tr>
+          <td><a href="assets/stylepic/ink_2.jpg"> <img height="150" class="center" src="assets/stylepic/ink_2.jpg" alt=""></a></td>
+          <td><a href="assets/comp_single_ref/vidCom/6.mp4"><video height="150" src="assets/comp_single_ref/vidCom/6.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_single_ref/vidCraf/6.mp4"><video height="150" src="assets/comp_single_ref/vidCraf/6.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_single_ref/gen2/6.mp4"><video height="150" src="assets/comp_single_ref/gen2/6.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_single_ref/ours/6.mp4"><video height="150" src="assets/comp_single_ref/ours/6.mp4" autoplay loop controls muted /> ></video></a></td>
+        </tr>
+        <tr><th class="prompt" colspan="5">"A river flowing gently under a bridge."</th></tr>
+        <tr>
+          <td><a href="assets/stylepic/ukiyoe.jpg"> <img height="150" class="center" src="assets/stylepic/ukiyoe.jpg" alt=""></a></td>
+          <td><a href="assets/comp_single_ref/vidCom/7.mp4"><video height="150" src="assets/comp_single_ref/vidCom/7.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_single_ref/vidCraf/7.mp4"><video height="150" src="assets/comp_single_ref/vidCraf/7.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_single_ref/gen2/7.mp4"><video height="150" src="assets/comp_single_ref/gen2/7.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_single_ref/ours/7.mp4"><video height="150" src="assets/comp_single_ref/ours/7.mp4" autoplay loop controls muted /> ></video></a></td>
+        </tr>
+        <tr><th class="prompt" colspan="5">"A street performer playing the guitar."</th></tr>
+        <tr>
+          <td><a href="assets/stylepic/oil_paint_2.jpg"> <img height="150" class="center" src="assets/stylepic/oil_paint_2.jpg" alt=""></a></td>
+          <td><a href="assets/comp_single_ref/vidCom/8.mp4"><video height="150" src="assets/comp_single_ref/vidCom/8.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_single_ref/vidCraf/8.mp4"><video height="150" src="assets/comp_single_ref/vidCraf/8.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_single_ref/gen2/8.mp4"><video height="150" src="assets/comp_single_ref/gen2/8.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_single_ref/ours/8.mp4"><video height="150" src="assets/comp_single_ref/ours/8.mp4" autoplay loop controls muted /> ></video></a></td>
+        </tr>
+        <tr>
+          <td><br /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!------------------ END SECTION ------------------>
+
+
+    <!------------------ BEGIN SECTION ------------------>
+
+    <p>&nbsp;</p>
+    <hr>
+
+    <h1 id="comp_multi_ref" align="left"><a name="image-results" id="image-results"></a>Comparison to Baselines(Multiple Reference) </h1>
+
+
+    <p align="left">
+      We present the comparison results of our method with AnimateDiff(<a href="#animatediff">[5]</a>) for multi-reference style-guided Text-to-Video methods.
+
+      <p>Our method effectively generate high-quality stylized video that align with prompts and confrom the style of reference images without any additional finetuning costs</p>
+    </p>
+
+    <p>&nbsp;</p>
+
+    <table width="600" align="center">
+      <colgroup>
+        <col style="width: 25%;">
+        <col style="width: 25%;">
+        <col style="width: 25%;">
+        <col style="width: 25%;">
+      </colgroup>
+      <tbody>
+        <th style="font-size: 20px">Style Reference</th>
+        <th style="font-size: 20px">AnimateDiff(<a href="#animatediff">[5]</a>) </th>
+        <th style="font-size: 20px">Ours(S-R)</th>
+        <th style="font-size: 20px">Ours(M-R)</th>
+        <tr><th class="prompt" colspan="4">"A wooden sailboat docked in a harbor."</th></tr>
+        <tr>
+          <td><a href="assets/stylepic_multi_ref/3.jpg"> <img height="200" class="center" src="assets/stylepic_multi_ref/3.jpg" alt=""></a></td>
+          <td><a href="assets/comp_multi_ref/animtediff/1.mp4"><video height="200" src="assets/comp_multi_ref/animtediff/1.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_multi_ref/ours_sr/1.mp4"><video height="200" src="assets/comp_multi_ref/ours_sr/1.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_multi_ref/ours_mr/1.mp4"><video height="200" src="assets/comp_multi_ref/ours_mr/1.mp4" autoplay loop controls muted /> ></video></a></td>
+        </tr>
+        <tr><th class="prompt" colspan="4">"A student walking to school with backpack."</th></tr>
+        <tr>
+          <td><a href="assets/stylepic_multi_ref/4.jpg"> <img height="200" class="center" src="assets/stylepic_multi_ref/4.jpg" alt=""></a></td>
+          <td><a href="assets/comp_multi_ref/animtediff/2.mp4"><video height="200" src="assets/comp_multi_ref/animtediff/2.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_multi_ref/ours_sr/2.mp4"><video height="200" src="assets/comp_multi_ref/ours_sr/2.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_multi_ref/ours_mr/2.mp4"><video height="200" src="assets/comp_multi_ref/ours_mr/2.mp4" autoplay loop controls muted /> ></video></a></td>
+        </tr>
+        <tr><th class="prompt" colspan="4">"A street performer playing the guitar."</th></tr>
+        <tr>
+          <td><a href="assets/stylepic_multi_ref/1.jpg"> <img height="200" class="center" src="assets/stylepic_multi_ref/1.jpg" alt=""></a></td>
+          <td><a href="assets/comp_multi_ref/animtediff/3.mp4"><video height="200" src="assets/comp_multi_ref/animtediff/3.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_multi_ref/ours_sr/3.mp4"><video height="200" src="assets/comp_multi_ref/ours_sr/3.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_multi_ref/ours_mr/3.mp4"><video height="200" src="assets/comp_multi_ref/ours_mr/3.mp4" autoplay loop controls muted /> ></video></a></td>
+        </tr>
+        <tr><th class="prompt" colspan="4">"A wolf walking stealthily through the forest."</th></tr>
+        <tr>
+          <td><a href="assets/stylepic_multi_ref/1.jpg"> <img height="200" class="center" src="assets/stylepic_multi_ref/1.jpg" alt=""></a></td>
+          <td><a href="assets/comp_multi_ref/animtediff/4.mp4"><video height="200" src="assets/comp_multi_ref/animtediff/4.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_multi_ref/ours_sr/4.mp4"><video height="200" src="assets/comp_multi_ref/ours_sr/4.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_multi_ref/ours_mr/4.mp4"><video height="200" src="assets/comp_multi_ref/ours_mr/4.mp4" autoplay loop controls muted /> ></video></a></td>
+        </tr>
+        <tr><th class="prompt" colspan="4">"A student walking to school with backpack."</th></tr>
+        <tr>
+          <td><a href="assets/stylepic_multi_ref/3.jpg"> <img height="200" class="center" src="assets/stylepic_multi_ref/3.jpg" alt=""></a></td>
+          <td><a href="assets/comp_multi_ref/animtediff/5.mp4"><video height="200" src="assets/comp_multi_ref/animtediff/5.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_multi_ref/ours_sr/5.mp4"><video height="200" src="assets/comp_multi_ref/ours_sr/5.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_multi_ref/ours_mr/5.mp4"><video height="200" src="assets/comp_multi_ref/ours_mr/5.mp4" autoplay loop controls muted /> ></video></a></td>
+        </tr>
+        <tr><th class="prompt" colspan="4">"A knight riding a horse through a field."</th></tr>
+        <tr>
+          <td><a href="assets/stylepic_multi_ref/4.jpg"> <img height="200" class="center" src="assets/stylepic_multi_ref/4.jpg" alt=""></a></td>
+          <td><a href="assets/comp_multi_ref/animtediff/6.mp4"><video height="200" src="assets/comp_multi_ref/animtediff/6.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_multi_ref/ours_sr/6.mp4"><video height="200" src="assets/comp_multi_ref/ours_sr/6.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_multi_ref/ours_mr/6.mp4"><video height="200" src="assets/comp_multi_ref/ours_mr/6.mp4" autoplay loop controls muted /> ></video></a></td>
+        </tr>
+        <tr><th class="prompt" colspan="4">"A chef preparing meals in kitchen."</th></tr>
+        <tr>
+          <td><a href="assets/stylepic_multi_ref/2.jpg"> <img height="200" class="center" src="assets/stylepic_multi_ref/2.jpg" alt=""></a></td>
+          <td><a href="assets/comp_multi_ref/animtediff/7.mp4"><video height="200" src="assets/comp_multi_ref/animtediff/7.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_multi_ref/ours_sr/7.mp4"><video height="200" src="assets/comp_multi_ref/ours_sr/7.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_multi_ref/ours_mr/7.mp4"><video height="200" src="assets/comp_multi_ref/ours_mr/7.mp4" autoplay loop controls muted /> ></video></a></td>
+        </tr>
+        <tr><th class="prompt" colspan="4">"A rocketship heading towards the moon."</th></tr>
+        <tr>
+          <td><a href="assets/stylepic_multi_ref/5.jpg"> <img height="200" class="center" src="assets/stylepic_multi_ref/5.jpg" alt=""></a></td>
+          <td><a href="assets/comp_multi_ref/animtediff/8.mp4"><video height="200" src="assets/comp_multi_ref/animtediff/8.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_multi_ref/ours_sr/8.mp4"><video height="200" src="assets/comp_multi_ref/ours_sr/8.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/comp_multi_ref/ours_mr/8.mp4"><video height="200" src="assets/comp_multi_ref/ours_mr/8.mp4" autoplay loop controls muted /> ></video></a></td>
+        </tr>
+        <tr>
+          <td><br /></td>
+        </tr>
+      </tbody>
+    </table>
+    <!------------------ END SECTION ------------------>
+
+
+    <!------------------ BEGIN SECTION ------------------>
+
+    <p>&nbsp;</p>
+    <hr>
+
+    <h1 id="ablation_study" align="left"><a name="image-results" id="image-results"></a>Ablation Study </h1>
+
+    <p>&nbsp;</p>
+
+    <p align="left">
+      we ablate the two-stage training strategy to verify its effectiveness in stylized video generation.
+
+      <table width="600" align="center">
+        <colgroup>
+          <col style="width: 25%;">
+          <col style="width: 25%;">
+          <col style="width: 25%;">
+          <col style="width: 25%;">
+        </colgroup>
+        <tbody>
+          <th style="font-size: 20px">Style Reference</th>
+          <th style="font-size: 20px">Only Stage1</th>
+          <th style="font-size: 20px">Only Joint Training</th>
+          <th style="font-size: 20px">Ours</th>
+          <tr><th class="prompt" colspan="4">"A student walking to school with backpack."</th></tr>
+          <tr>
+            <td><a href="assets/stylepic/illstration_1.jpg"> <img height="200" class="center" src="assets/stylepic/illstration_1.jpg" alt=""></a></td>
+            <td><a href="assets/ablation/ablation_onlystage1.mp4"><video height="200" src="assets/ablation/ablation_onlystage1.mp4" autoplay loop controls muted /> ></video></a></td>
+            <td><a href="assets/ablation/ablation_onlystage2.mp4"><video height="200" src="assets/ablation/ablation_onlystage2.mp4" autoplay loop controls muted /> ></video></a></td>
+            <td><a href="assets/ablation/ours.mp4"><video height="200" src="assets/ablation/ours.mp4" autoplay loop controls muted /> ></video></a></td>
+          </tr>
+          <tr>
+            <td><br /></td>
+          </tr>
+        </tbody>
+      </table>
+    </p>
+    <!------------------ END SECTION ------------------>
+
+
+    <!------------------ BEGIN SECTION ------------------>
+
+    <p>&nbsp;</p>
+    <hr>
+
+    <h1 id="result_depth" align="left"><a name="image-results" id="image-results"></a>StyleCrafter Combined with Depth Control </h1>
+
+    
+    <p align="left">
+      We present sample results of our method combined with depth control, and compare with VideoComposer
+    </p>
+
+    <p>&nbsp;</p>
+    
+    <table width="600" align="center">
+      <colgroup>
+        <col style="width: 25%;">
+        <col style="width: 25%;">
+        <col style="width: 25%;">
+        <col style="width: 25%;">
+      </colgroup>
+      <tbody>
+        <th style="font-size: 20px">Style Reference</th>
+        <th style="font-size: 20px">Input Depth</th>
+        <th style="font-size: 20px">VideoComposer(<a href="#videocomposer">[1]</a>)</th>
+        <th style="font-size: 20px">Ours</th>
+        <tr><th class="prompt" colspan="4">"A tiger walks in the forest."</th></tr>
+        <tr>
+          <td><a href="assets/stylepic/anime_2.jpg"> <img height="200" class="center" src="assets/stylepic/anime_2.jpg" alt=""></a></td>
+          <td><a href="assets/depth_control/depth/depth_1.mp4"><video height="200" src="assets/depth_control/depth/depth_1.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/depth_control/vidCom/1.mp4"><video height="200" src="assets/depth_control/vidCom/1.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/depth_control/ours/1.mp4"><video height="200" src="assets/depth_control/ours/1.mp4" autoplay loop controls muted /> ></video></a></td>
+        </tr>
+        <tr>
+          <td><a href="assets/stylepic/digital_art_1.jpg"> <img height="200" class="center" src="assets/stylepic/digital_art_1.jpg" alt=""></a></td>
+          <td><a href="assets/depth_control/depth/depth_1.mp4"><video height="200" src="assets/depth_control/depth/depth_1.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/depth_control/vidCom/2.mp4"><video height="200" src="assets/depth_control/vidCom/2.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/depth_control/ours/2.mp4"><video height="200" src="assets/depth_control/ours/2.mp4" autoplay loop controls muted /> ></video></a></td>
+        </tr>
+        <tr><th class="prompt" colspan="4">"A car turning around on a countryside road."</th></tr>
+        <tr>
+          <td><a href="assets/stylepic/ink_2.jpg"> <img height="200" class="center" src="assets/stylepic/ink_2.jpg" alt=""></a></td>
+          <td><a href="assets/depth_control/depth/depth_2.mp4"><video height="200" src="assets/depth_control/depth/depth_2.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/depth_control/vidCom/3.mp4"><video height="200" src="assets/depth_control/vidCom/3.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/depth_control/ours/3.mp4"><video height="200" src="assets/depth_control/ours/3.mp4" autoplay loop controls muted /> ></video></a></td>
+        </tr>
+        <tr>
+          <td><a href="assets/stylepic/oil_paint_2.jpg"> <img height="200" class="center" src="assets/stylepic/oil_paint_2.jpg" alt=""></a></td>
+          <td><a href="assets/depth_control/depth/depth_2.mp4"><video height="200" src="assets/depth_control/depth/depth_2.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/depth_control/vidCom/4.mp4"><video height="200" src="assets/depth_control/vidCom/4.mp4" autoplay loop controls muted /> ></video></a></td>
+          <td><a href="assets/depth_control/ours/4.mp4"><video height="200" src="assets/depth_control/ours/4.mp4" autoplay loop controls muted /> ></video></a></td>
+        </tr>
+        <tr>
+          <td><br /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!------------------ END SECTION ------------------>
+
+
+    <!------------------ BEGIN SECTION ------------------>
+
+    <p>&nbsp;</p>
+    <hr>
+
+    <h1 id="result_more" align="left"><a name="image-results" id="image-results"></a>Additional Results of StyleCrafter </h1>
+
+
+    <p align="left">
+      We present additional style-guided text-to-video generation results of our method.
+
+      <table width="600" align="center" class="more_result_table">
+        <colgroup>
+          <col style="width: 22%;">
+          <col style="width: 22%;">
+          <col style="width: 12%;">
+          <col style="width: 22%;">
+          <col style="width: 22%;">
+        </colgroup>
+        <tbody>
+          <tr><th class="prompt" colspan="5">"A bear catching fish in a river."</th></tr>
+          <tr>
+            <td><a href="assets/stylepic/watercolor_1.jpg"> <img height="200" class="center" src="assets/stylepic/watercolor_1.jpg" alt=""></a></td>
+            <td><a href="assets/more_results/bear/1.mp4"><video height="200" src="assets/more_results/bear/1.mp4" autoplay loop controls muted /> ></video></a></td>
+            <td style="color: #222;; width: 12%;">hidden</td>
+            <td><a href="assets/stylepic/anime_2.jpg"> <img height="200" class="center" src="assets/stylepic/anime_2.jpg" alt=""></a></td>
+            <td><a href="assets/more_results/bear/2.mp4"><video height="200" src="assets/more_results/bear/2.mp4" autoplay loop controls muted /> ></video></a></td>
+          </tr>
+          <tr>
+            <td><a href="assets/stylepic/illstration_1.jpg"> <img height="200" class="center" src="assets/stylepic/illstration_1.jpg" alt=""></a></td>
+            <td><a href="assets/more_results/bear/3.mp4"><video height="200" src="assets/more_results/bear/3.mp4" autoplay loop controls muted /> ></video></a></td>
+            <td></td>
+            <td><a href="assets/stylepic/ink_2.jpg"> <img height="200" class="center" src="assets/stylepic/ink_2.jpg" alt=""></a></td>
+            <td><a href="assets/more_results/bear/4.mp4"><video height="200" src="assets/more_results/bear/4.mp4" autoplay loop controls muted /> ></video></a></td>
+          </tr>
+          <tr>
+            <td><a href="assets/stylepic/oil_paint_2.jpg"> <img height="200" class="center" src="assets/stylepic/oil_paint_2.jpg" alt=""></a></td>
+            <td><a href="assets/more_results/bear/5.mp4"><video height="200" src="assets/more_results/bear/5.mp4" autoplay loop controls muted /> ></video></a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr><th class="prompt" colspan="5">"A wodden sailboat docked in a harbor"</th></tr>
+          <tr>
+            <td><a href="assets/stylepic/anime_1.jpg"> <img height="200" class="center" src="assets/stylepic/anime_1.jpg" alt=""></a></td>
+            <td><a href="assets/more_results/boat/1.mp4"><video height="200" src="assets/more_results/boat/1.mp4" autoplay loop controls muted /> ></video></a></td>
+            <td></td>
+            <td><a href="assets/stylepic/craft_1.jpg"> <img height="200" class="center" src="assets/stylepic/craft_1.jpg" alt=""></a></td>
+            <td><a href="assets/more_results/boat/2.mp4"><video height="200" src="assets/more_results/boat/2.mp4" autoplay loop controls muted /> ></video></a></td>
+          </tr>
+          <tr>
+            <td><a href="assets/stylepic/digital_art_1.jpg"> <img height="200" class="center" src="assets/stylepic/digital_art_1.jpg" alt=""></a></td>
+            <td><a href="assets/more_results/boat/3.mp4"><video height="200" src="assets/more_results/boat/3.mp4" autoplay loop controls muted /> ></video></a></td>
+            <td></td>
+            <td><a href="assets/stylepic/digital_art_2.jpg"> <img height="200" class="center" src="assets/stylepic/digital_art_2.jpg" alt=""></a></td>
+            <td><a href="assets/more_results/boat/4.mp4"><video height="200" src="assets/more_results/boat/4.mp4" autoplay loop controls muted /> ></video></a></td>
+          </tr>
+          <tr>
+            <td><a href="assets/stylepic/line_2.jpg"> <img height="200" class="center" src="assets/stylepic/line_2.jpg" alt=""></a></td>
+            <td><a href="assets/more_results/boat/5.mp4"><video height="200" src="assets/more_results/boat/5.mp4" autoplay loop controls muted /> ></video></a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr><th class="prompt" colspan="5">"A chef preparing meals in kitchen"</th></tr>
+          <tr>
+            <td><a href="assets/stylepic/digital_art_3.jpg"> <img height="200" class="center" src="assets/stylepic/digital_art_3.jpg" alt=""></a></td>
+            <td><a href="assets/more_results/cook/1.mp4"><video height="200" src="assets/more_results/cook/1.mp4" autoplay loop controls muted /> ></video></a></td>
+            <td></td>
+            <td><a href="assets/stylepic/ukiyoe.jpg"> <img height="200" class="center" src="assets/stylepic/ukiyoe.jpg" alt=""></a></td>
+            <td><a href="assets/more_results/cook/2.mp4"><video height="200" src="assets/more_results/cook/2.mp4" autoplay loop controls muted /> ></video></a></td>
+          </tr>
+          <tr>
+            <td><a href="assets/stylepic/line_2.jpg"> <img height="200" class="center" src="assets/stylepic/line_2.jpg" alt=""></a></td>
+            <td><a href="assets/more_results/cook/3.mp4"><video height="200" src="assets/more_results/cook/3.mp4" autoplay loop controls muted /> ></video></a></td>
+            <td></td>
+            <td><a href="assets/stylepic/illstration_1.jpg"> <img height="200" class="center" src="assets/stylepic/illstration_1.jpg" alt=""></a></td>
+            <td><a href="assets/more_results/cook/4.mp4"><video height="200" src="assets/more_results/cook/4.mp4" autoplay loop controls muted /> ></video></a></td>
+          </tr>
+          <tr>
+            <td><a href="assets/stylepic/icon_1.jpg"> <img height="200" class="center" src="assets/stylepic/icon_1.jpg" alt=""></a></td>
+            <td><a href="assets/more_results/cook/5.mp4"><video height="200" src="assets/more_results/cook/5.mp4" autoplay loop controls muted /> ></video></a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr><th class="prompt" colspan="5">"A campfire surrounded by tents"</th></tr>
+          <tr>
+            <td><a href="assets/stylepic/anime_2.jpg"> <img height="200" class="center" src="assets/stylepic/anime_1.jpg" alt=""></a></td>
+            <td><a href="assets/more_results/fire/1.mp4"><video height="200" src="assets/more_results/fire/1.mp4" autoplay loop controls muted /> ></video></a></td>
+            <td></td>
+            <td><a href="assets/stylepic/digital_art_1.jpg"> <img height="200" class="center" src="assets/stylepic/digital_art_1.jpg" alt=""></a></td>
+            <td><a href="assets/more_results/fire/2.mp4"><video height="200" src="assets/more_results/fire/2.mp4" autoplay loop controls muted /> ></video></a></td>
+          </tr>
+          <tr>
+            <td><a href="assets/stylepic/digital_art_2.jpg"> <img height="200" class="center" src="assets/stylepic/digital_art_2.jpg" alt=""></a></td>
+            <td><a href="assets/more_results/fire/3.mp4"><video height="200" src="assets/more_results/fire/3.mp4" autoplay loop controls muted /> ></video></a></td>
+            <td></td>
+            <td><a href="assets/stylepic/icon_1.jpg"> <img height="200" class="center" src="assets/stylepic/icon_1.jpg" alt=""></a></td>
+            <td><a href="assets/more_results/fire/4.mp4"><video height="200" src="assets/more_results/fire/4.mp4" autoplay loop controls muted /> ></video></a></td>
+          </tr>
+          <tr>
+            <td><a href="assets/stylepic/oil_paint_2.jpg"> <img height="200" class="center" src="assets/stylepic/oil_paint_2.jpg" alt=""></a></td>
+            <td><a href="assets/more_results/fire/5.mp4"><video height="200" src="assets/more_results/fire/5.mp4" autoplay loop controls muted /> ></video></a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><br /></td>
+          </tr>
+        </tbody>
+      </table>
+
+    </p>
+
+    <!------------------ END SECTION ------------------>
+
+    <p><br>
+    </p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <hr>
+    <h1 id="reference" align="left">References </h1>
+
+    <p>
+      <a name="ref-videocomposer" id="ref-videocomposer"></a>
+      [1] Xiang Wang, Hangjie Yuan, Shiwei Zhang, Dayou Chen, Jiuniu Wang, 
+      Yingya Zhang, Yujun Shen, Deli Zhao, and Jingren Zhou. 
+      Videocomposer: Compositional video synthesis with motion controllability. 
+      arXiv preprint:2306.02018, 2023
+    </p>
+    <p>
+      <a name="ref-videocrafter" id="ref-videocrafter"></a>
+      [2] Haoxin Chen, Menghan Xia, Yingqing He, Yong Zhang, Xiaodong Cun, Shaoshu Yang, Jinbo Xing, 
+      Yaofang Liu, Qifeng Chen, Xintao Wang, Chao Weng, and Ying Shan. 
+      Videocrafter1: Open diffusion models for high-quality video generation. 
+      preprint arXiv:2310.19512, 2023
+    </p>
+    <p>
+      <a name="ref-gpt4v" id="ref-gpt4v"></a>
+      [3] OpenAI. Gpt-4v(ision) system card. Technical report, 2023.
+    </p>
+    <p>
+      <a name="ref-gen2" id="ref-gen2"></a>
+      [4] Gen-2 contributors. Gen-2. Gen-2. Accessed Nov. 1, 2023 
+      [Online] <a href="https://research.runwayml.com/gen2">https://research.runwayml.com/gen2</a>. 
+    </p>
+
+    <p>
+      <a name="ref-animatediff" id="ref-animatediff"></a>
+      [5] Yuwei Guo, Ceyuan Yang, Anyi Rao, Yaohui Wang, Yu Qiao, Dahua Lin, and Bo Dai. 
+      Animatediff: Animate your personalized text-to-image diffusion models without specific tuning. 
+      arXiv preprint:2307.04725, 2023
+    </p>
+  </div>
+
+</body>
+
+</html>
