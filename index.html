@@ -1,437 +1,484 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
-  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
-  <!-- Replace the content tag with appropriate information -->
-  <meta name="description" content="DESCRIPTION META TAG">
-  <meta property="og:title" content="RealCustom" />
-  <meta property="og:description" content="Customizing anything in real-time!" />
-  <meta property="og:url" content="URL OF THE WEBSITE" />
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="pics/icon.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-
-
-  <meta name="twitter:title" content="RealCustom">
-  <meta name="twitter:description" content="Customizing anything in real-time!">
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <!-- <meta name="twitter:image" content="pics/icon.png"> -->
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- Keywords for your paper to be indexed by-->
-  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="description"
+        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DreamIdentity: Improved Editability for Efficient Face-identity Preserved Image Generation</title>
 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-  <title>RealCustom</title>
-  <!-- <link rel="icon" type="image/x-icon" href="pics/icon.png">
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet"> -->
+    function gtag() {
+      dataLayer.push(arguments);
+    }
 
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script src="static/js/bulma-carousel.min.js"></script>
-  <script src="static/js/bulma-slider.min.js"></script>
-  <script src="static/js/index.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
 </head>
-
 <body>
 
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
 
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">DreamIdentity: Improved Editability for Efficient Face-identity Preserved Image Generation</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=ow1jGJkAAAAJ&hl=zh-CN&oi=ao">Zhuowei Chen</a><sup>1,2</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=TE-GWHoAAAAJ&hl=zh-CN&oi=ao">Shancheng Fang</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://liujikun.github.io/">Wei Liu</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?view_op=list_works&hl=zh-CN&authuser=1&user=9rWWCgUAAAAJ">Qian He</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://corleone-huang.github.io/">Mengqi Huang</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com.hk/citations?user=hxGs4ukAAAAJ&hl=zh-CN">Yongdong Zhang</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=m-0P8sgAAAAJ&hl=zh-CN">Zhendong Mao</a><sup>1</sup>,
+            </span>
+            <!-- <span class="author-block">
+              <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
+            </span> -->
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Science and Technology of China, </span>
+            <span class="author-block"><sup>2</sup>ByteDance</span>
+          </div>
+
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title"><i>RealCustom</i>: Narrowing Real Text Word for Real-Time Open-Domain Text-to-Image Customization</h1>
-            <div class="is-size-5 publication-authors">
-              <!-- Paper authors -->
-              <span class="author-block">
-                <a href="https://corleone-huang.github.io/">Mengqi Huang</a><sup>1</sup><sup>*</sup>,</span>
-              <span class="author-block">
-                <a href="https://scholar.google.com.hk/citations?user=m-0P8sgAAAAJ&hl=zh-CN&oi=ao">Zhendong Mao</a><sup>1</sup>,</span>
-              <span class="author-block">
-                <a href="">Mingcong Liu</a><sup>2</sup>,
-              </span>
-              <span class="author-block">
-                <a href="">Qian He</a><sup>2</sup>,
-              </span>
-              <span class="author-block">
-                <a href="">Yongdong Zhang</a><sup>1</sup>,</span>
-              </span>
-              <br>
-            </div>
-
-            <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>1</sup>University of Science and Technology of China,</span>&nbsp;
-              <span class="author-block"><sup>2</sup>ByteDance</span>
-            </div>
-
-            <div class="is-size-5 publication-authors">
-                <span class="author-block"><sup>*</sup>Works done during the intership at ByteDance.</span>
-              </div>
-
-            <div class="column has-text-centered">
-              <div class="publication-links">
-                <!-- ArXiv abstract Link -->
-                <span class="link-block">
-                  <a href="" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon"> 
-                      <i class="ai ai-arxiv"></i>
-                    </span>
-                    <span>arXiv</span>
-                  </a>
-                </span>
-
-                <!-- Supplementary PDF link -->
-                <span class="link-block">
-                  <a href="" target="_blank" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://dreamidentity.github.io/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
                       <i class="fas fa-file-pdf"></i>
-                    </span>
-                    <span>Supplementary</span>
-                  </a>
-                </span>
-
-                <!-- Github link -->
-                <span class="link-block">
-                  <a href="" target="_blank" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/abs/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://dreamidentity.github.io/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
                       <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code</span>
+                  </span>
+                  <span>Code (To be released)</span>
                   </a>
-                </span>
-                <!-- Hugging Face Demo link with an image icon -->
-                <span class="link-block">
-                  <a href="" target="_blank" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <img src="static/images/hf.png" alt="Online Demo">
-                    </span>
-                    <span>Online Demo</span>
-                  </a>
-                </span>
-              </div>
+              </span>
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a> -->
             </div>
+
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <!-- <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/images/teaser.png"
+                type="video/mp4">
+      </video> -->
+      <img src="./static/images/teaser.png"
+                 alt="Interpolate start reference image."/>
+      <h2 class="subtitle has-text-centered">
+        Given only one facial image, DreamIdentity can efficiently generate countless identity-preserved and  text-coherent images in different context without any test-time optimization.
+      </h2>
+    </div>
+  </div>
+</section>
 
 
-
-  <!-- Teaser video-->
-  <section class="hero teaser">
-    <div class="container is-max-desktop">
-      <div class="hero-body">
-        <div class="columns is-centered has-text-centered">
-          <div class="column custom-width">
-            <h2 class="subtitle has-text-justified">
-              <b>TL;DR:</b> We propose RealCustom, a novel text-to-image customization paradigm. 
-              Given a single image representing the given subject in the open domain 
-              (any subjects), 
-              RealCustom could generate realistic images that consistently adhere to the given text for the given subjects 
-              in real-time (without any test-time optimization steps).
-            </h2>
-            <p><br></p>
-
-            <h2 class="title is-2">Show Cases</h2>
-            <div class="content has-text-justified">
-              <div id="results-carousel" class="carousel results-carousel" align="center">
-                <div class="item item-video1">
-                  <table width="900" align="center">
-                    <tbody>
-                      <tr>
-                        <td rowspan="2" style="vertical-align: middle; display: table-cell;">
-                          <a href="sm/assets/stylepic/oil_paint_2.jpg"> <img class="center"
-                              src="sm/assets/stylepic/oil_paint_2.jpg" alt=""></a>
-                          <p class="style_ref"> Style Reference</p>
-                        </td>
-                        <td>
-                          <a href="videos/showcase/oil_paint_2/1.mp4"><video src="videos/showcase/oil_paint_2/1.mp4"
-                              autoplay loop controls muted /> ></video></a>
-                          <p class="prompt_single_vid"> "A chef preparing meals in kitchen." </p>
-                        </td>
-                        <td>
-                          <a href="videos/showcase/oil_paint_2/2.mp4"><video src="videos/showcase/oil_paint_2/2.mp4"
-                              autoplay loop controls muted /> ></video></a>
-                          <p class="prompt_single_vid"> "A bear catching fish in a river." </p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <a href="videos/showcase/oil_paint_2/3.mp4"><video src="videos/showcase/oil_paint_2/3.mp4"
-                              autoplay loop controls muted /> ></video></a>
-                          <p class="prompt_single_vid"> "A street performer playing the guitar." </p>
-                        </td>
-                        <td>
-                          <a href="videos/showcase/oil_paint_2/4.mp4"><video src="videos/showcase/oil_paint_2/4.mp4"
-                              autoplay loop controls muted /> ></video></a>
-                          <p class="prompt_single_vid"> "A campfire surrounded by tents." </p>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="item item-video2">
-                  <table width="900" align="center">
-                    <tbody>
-                      <tr>
-                        <td rowspan="2" style="vertical-align: middle; display: table-cell;">
-                          <a href="sm/assets/stylepic/anime_1.jpg"> <img class="center"
-                              src="sm/assets/stylepic/anime_1.jpg" alt=""></a>
-                          <p class="style_ref"> Style Reference</p>
-                        </td>
-                        <td>
-                          <a href="videos/showcase/anime_1/1.mp4"><video src="videos/showcase/anime_1/1.mp4" autoplay
-                              loop controls muted /> ></video></a>
-                          <p class="prompt_single_vid"> "A wooden sailboat docked in a harbor." </p>
-                        </td>
-                        <td>
-                          <a href="videos/showcase/anime_1/2.mp4"><video src="videos/showcase/anime_1/2.mp4" autoplay
-                              loop controls muted /> ></video></a>
-                          <p class="prompt_single_vid"> "A bear catching fish in a river." </p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <a href="videos/showcase/anime_1/3.mp4"><video src="videos/showcase/anime_1/3.mp4" autoplay
-                              loop controls muted /> ></video></a>
-                          <p class="prompt_single_vid"> "A field of sunflowers on a sunny day." </p>
-                        </td>
-                        <td>
-                          <a href="videos/showcase/anime_1/4.mp4"><video src="videos/showcase/anime_1/4.mp4" autoplay
-                              loop controls muted /> ></video></a>
-                          <p class="prompt_single_vid"> "A river flowing gently under a bridge." </p>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-              </div>
-            </div>
-          </div>
+<!-- <section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/steve.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/chair-tp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/shiba.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/fullbody.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/blueshirt.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-mask">
+          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/mask.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/coffee.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toby2.mp4"
+                    type="video/mp4">
+          </video>
         </div>
       </div>
     </div>
-  </section>
-  <!-- End teaser video -->
+  </div>
+</section> -->
 
 
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            While large-scale pre-trained text-to-image models can synthesize diverse and high-quality human-centric images, an intractable problem is how to preserve the face identity for conditioned face images. Existing methods either require time-consuming optimization for each face-identity or learning an efficient encoder at the cost of harming the editability of models. In this work, we present an optimization-free method for each face identity, meanwhile keeping the editability for text-to-image models. Specifically, we propose a novel face-identity encoder to learn an accurate representation of human faces, which applies multi-scale face features followed by a multi-embedding projector to directly generate the pseudo words in the text embedding space. Besides, we propose self-augmented editability learning to enhance the editability of models, which is achieved by constructing paired generated face and edited face images using celebrity names, aiming at transferring mature ability of off-the-shelf text-to-image models in celebrity faces to unseen faces. Extensive experiments show that our methods can generate identity-preserved images under different scenes at a much faster speed.
+          </p>
+          <!-- <p>
+            Our approach augments neural radiance fields
+            (NeRF) by optimizing an
+            additional continuous volumetric deformation field that warps each observed point into a
+            canonical 5D NeRF.
+            We observe that these NeRF-like deformation fields are prone to local minima, and
+            propose a coarse-to-fine optimization method for coordinate-based models that allows for
+            more robust optimization.
+            By adapting principles from geometry processing and physical simulation to NeRF-like
+            models, we propose an elastic regularization of the deformation field that further
+            improves robustness.
+          </p>
+          <p>
+            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
+            photos/videos into deformable NeRF
+            models that allow for photorealistic renderings of the subject from arbitrary
+            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
+            using a
+            rig with two mobile phones that take time-synchronized photos, yielding train/validation
+            images of the same pose at different viewpoints. We show that our method faithfully
+            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
+            fidelity.
+          </p> -->
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
 
-  <!-- Paper abstract -->
-  <section class="section hero is-light">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-2">Abstract</h2>
-          <div class="content has-text-justified">
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Methods</h2>
+        <!-- <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div> -->
+        <img src="./static/images/methods.png"
+                 alt="Interpolate start reference image."/>
+        <p>
+          Overview of the proposed DreamIdentity: (a) The training and inference pipeline. The input face image is first encoded into multi-word embeddings (denoted by S*) by our proposed M2 ID encoder. Then S* are associated with the text input to generate face-identity preserved image in the text-aligned scene. (b) The architecture of M2 ID encoder, where a ViT-based face identity encoder is adopted as the backbone and the extracted multi-scale features are projected to multi-word embedding. (c) The composition of the training data and its objectives. The training data consists of a public face dataset for reconstruction and a self-augmented dataset for  editability learning. 
+          </p>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- <div class="columns is-centered"> -->
+
+      <!-- Visual Effects. -->
+      <!-- <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Visual Effects</h2>
+          <p>
+            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
+            would be impossible without nerfies since it would require going through a wall.
+          </p>
+          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/dollyzoom-stacked.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div> -->
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <!-- <div class="column">
+        <h2 class="title is-3">Matting</h2>
+        <div class="columns is-centered">
+          <div class="column content">
             <p>
-                Text-to-image customization, which aims to synthesize
-                text-driven images for the given subjects, has recently revolutionized content creation. 
-                Existing works follow the pseudo-word paradigm, i.e., represent the given subjects as
-                pseudo-words and then compose them with the given text.
-                However, the inherent entangled influence scope of pseudo-words with the given text results in a dual-optimum paradox, i.e., 
-                the similarity of the given subjects and the controllability of the given text could not be optimal simultaneously. 
-                We present RealCustom that, for the first time, disentangles similarity from controllability by precisely limiting
-                subject influence to relevant parts only, achieved by gradually narrowing real text word from its general connotation
-                to the specific subject and using its cross-attention to distinguish relevance. Specifically, RealCustom introduces a
-                novel “train-inference” decoupled framework: (1) during
-                training, RealCustom learns general alignment between visual conditions to original textual conditions by a novel
-                adaptive scoring module to adaptively modulate influence
-                quantity; (2) during inference, a novel adaptive mask guidance strategy is proposed to iteratively update the influence
-                scope and influence quantity of the given subjects to gradually narrow the generation of the real text word. 
-                Comprehensive experiments demonstrate the superior real-time
-                customization ability of RealCustom in the open domain,
-                achieving both unprecedented similarity of the given subjects and controllability of the given text for the first time.
+              As a byproduct of our method, we can also solve the matting problem by ignoring
+              samples that fall outside of a bounding box during rendering.
             </p>
+            <video id="matting-video" controls playsinline height="100%">
+              <source src="./static/videos/matting.mp4"
+                      type="video/mp4">
+            </video>
           </div>
+
+        </div>
+      </div> -->
+    <!-- </div> -->
+    <!--/ Matting. -->
+
+    <!-- Animation. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Applications</h2>
+
+        <!-- Interpolating. -->
+        <h3 class="title is-4">Everything and Everywhere All At Once</h3>
+        <div class="content has-text-justified">
+          <p>
+            Given a face identify and its gaze location on the canvas, our method can generate a series of images that maintain the same identity while following the editing prompts in the same location.
+          </p>
+        </div>
+        <div class="columns is-vcentered interpolation-panel">
+          <img src="./static/images/anything.png"
+                 alt="Interpolate start reference image."/>
+        </div>
+        <br/>
+        <!--/ Interpolating. -->
+
+        <!-- Interpolating. -->
+        <h3 class="title is-4">Text-guided Portrait Style Tranfer</h3>
+        <div class="content has-text-justified">
+          <p>
+            Our method can preserve core ID information while performing Text-guided Portrait Style Tranfer. (We use ControlNet-Canny to preserve structure features)
+          </p>
+        </div>
+        <div class="columns is-vcentered interpolation-panel">
+          <img src="./static/images/style_transfer.png"
+                 alt="Interpolate start reference image."/>
+        </div>
+        <br/>
+        <!--/ Interpolating. -->
+
+        <!-- Interpolating. -->
+        <h3 class="title is-4">Text-guided Portrait Style Tranfer with Finetuned Checkpoint</h3>
+        <div class="content has-text-justified">
+          <p>
+            Our method can work well on the fientuned checkpoint, such as <a
+              href="https://huggingface.co/Envvi/Inkpunk-Diffusion">Envvi/Inkpunk-Diffusion</a> 
+          </p>
+        </div>
+        <div class="columns is-vcentered interpolation-panel">
+          <img src="./static/images/style_transfer_inkpunk.png"
+                 alt="Interpolate start reference image."/>
+        </div>
+        <br/>
+        <!--/ Interpolating. -->
+
+        
+
+      </div>
+    </div>
+    <!--/ Animation. -->
+
+
+    <!-- Concurrent Work. -->
+    <!-- <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Related Links</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            There's a lot of excellent work that was introduced around the same time as ours.
+          </p>
+          <p>
+            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
+          </p>
+          <p>
+            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
+            both use deformation fields to model non-rigid scenes.
+          </p>
+          <p>
+            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
+          </p>
+          <p>
+            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
+          </p>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Concurrent Work. -->
+
+  </div>
+</section>
+
+
+<!-- <section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}</code></pre>
+  </div>
+</section> -->
+
+
+<footer class="footer">
+  <div class="container">
+    <!-- <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div> -->
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website source code based on the <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> project page.
+          </p>
         </div>
       </div>
     </div>
-  </section>
-  <!-- End paper abstract -->
+  </div>
+</footer>
 
-
-
-  <!-- Paper poster -->
-  <section class="hero is-small">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-">
-            <h2 class="title is-2">Method</h2>
-            <div class="content has-text-justified">
-              <td colspan="3">
-                <p>
-                  We propose a method to equip pre-trained Text-to-Video (T2V) models with a style adapter,
-                  allowing for the generation of stylized videos based on both a text prompt and a style reference
-                  image.
-                  The overview diagram is illustrated as the following figure.
-                  In this framework, the textual description dictates the video content,
-                  while the style image governs the visual style, ensuring a disentangled control over the video
-                  generation process.
-                </p>
-                <p>
-                  Given the limited availability of stylized videos, we employ a two-stage training strategy.
-                  Initially, we utilize an image dataset abundant in artistic styles to learn reference-based style
-                  modulation.
-                  Subsequently, adaptation finetuning on a mixed dataset of style images and realistic videos is
-                  conducted to improve the temporal
-                  quality of the generated videos.
-                </p>
-
-              </td>
-            </div>
-            <div class="columns is-centered has-text-justified">
-              <td colspan="3">
-                <img src="pics/overview.png" alt="" width="700" />
-              </td>
-            </div>
-            <p><br></p>
-          </div>
-  </section>
-  <!--End paper poster -->
-
-  <!--BibTex citation -->
-  <!-- <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <h2 class="title">BibTeX</h2>
-      <pre><code>@article{tokenflow2023,
-        title = {TokenFlow: Consistent Diffusion Features for Consistent Video Editing},
-        author = {Geyer, Michal and Bar-Tal, Omer and Bagon, Shai and Dekel, Tali},
-        journal={arXiv preprint arxiv:2307.10373},
-        year={2023}
-        }</code></pre>
-    </div>
-  </section> -->
-  <!--End BibTex citation -->
-
-  <section class="hero is-small">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered has-text-centered">
-          <div class="column custom-width">
-            <!-- <h2 class="title is-2"></h2> -->
-            <div class="content has-text-justified">
-              <p>
-                <a name="ref-videocomposer" id="ref-videocomposer"></a>
-                [1] Xiang Wang, Hangjie Yuan, Shiwei Zhang, Dayou Chen, Jiuniu Wang,
-                Yingya Zhang, Yujun Shen, Deli Zhao, and Jingren Zhou.
-                Videocomposer: Compositional video synthesis with motion controllability.
-                arXiv preprint:2306.02018, 2023
-              </p>
-              <p>
-                <a name="ref-videocrafter" id="ref-videocrafter"></a>
-                [2] Haoxin Chen, Menghan Xia, Yingqing He, Yong Zhang, Xiaodong Cun, Shaoshu Yang, Jinbo Xing,
-                Yaofang Liu, Qifeng Chen, Xintao Wang, Chao Weng, and Ying Shan.
-                Videocrafter1: Open diffusion models for high-quality video generation.
-                preprint arXiv:2310.19512, 2023
-              </p>
-              <p>
-                <a name="ref-gpt4v" id="ref-gpt4v"></a>
-                [3] OpenAI. Gpt-4v(ision) system card. Technical report, 2023.
-              </p>
-              <p>
-                <a name="ref-gen2" id="ref-gen2"></a>
-                [4] Gen-2 contributors. Gen-2. Gen-2. Accessed Nov. 1, 2023
-                [Online] <a href="https://research.runwayml.com/gen2">https://research.runwayml.com/gen2</a>.
-              </p>
-
-              <p>
-                <a name="ref-animatediff" id="ref-animatediff"></a>
-                [5] Yuwei Guo, Ceyuan Yang, Anyi Rao, Yaohui Wang, Yu Qiao, Dahua Lin, and Bo Dai.
-                Animatediff: Animate your personalized text-to-image diffusion models without specific tuning.
-                arXiv preprint:2307.04725, 2023
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <footer class="footer">
-        <div class="container">
-          <div class="columns is-centered">
-            <div class="column is-8">
-              <div class="content">
-
-                <p>
-                  This page was built using the <a
-                    href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic
-                    Project Page Template</a> and <a href="https://diffusion-tokenflow.github.io/">TokenFlow</a>.
-                  You are free to borrow the of this website, we just ask that you link back to this page in the footer.
-                  <br> This website is licensed under a <a rel="license"
-                    href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-                    Commons Attribution-ShareAlike 4.0 International License</a>.
-                </p>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-
-      <!-- Statcounter tracking code -->
-
-      <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
-
-      <!-- End of Statcounter Code -->
-      <script>
-        window.addEventListener('DOMContentLoaded', (event) => {
-          const videoWrappers = document.querySelectorAll('.video-wrapper');
-
-          videoWrappers.forEach(wrapper => {
-            const defaultVideo = wrapper.querySelector('.default-video');
-            const aspectRatio = defaultVideo.videoWidth / defaultVideo.videoHeight;
-            const height = wrapper.offsetWidth / aspectRatio;
-
-            wrapper.style.height = `${height}px`;
-
-            wrapper.addEventListener('mouseenter', () => {
-              defaultVideo.pause();
-              hoverVideo.play();
-            });
-
-            wrapper.addEventListener('mouseleave', () => {
-              defaultVideo.play();
-              hoverVideo.pause();
-            });
-          });
-        });
-        $(document).ready(function () {
-          var carouselItems = $('.carousel .item');
-          var numItems = carouselItems.length;
-          var numVideos = 5;
-          var currentIndex = 0;
-
-          $('.carousel').on('click', function () {
-            currentIndex++;
-            if (currentIndex + numVideos <= numItems) {
-              carouselItems.removeClass('active');
-              carouselItems.slice(currentIndex, currentIndex + numVideos).addClass('active');
-            } else {
-              currentIndex = 0;
-              carouselItems.removeClass('active');
-              carouselItems.slice(currentIndex, currentIndex + numVideos).addClass('active');
-            }
-          });
-
-          carouselItems.slice(currentIndex, currentIndex + numVideos).addClass('active');
-        });
-      </script>
-    </div>
-  </section>
 </body>
-
 </html>
