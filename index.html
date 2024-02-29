@@ -304,7 +304,11 @@
         <img src="./static/images/methods.png"
                  alt="Interpolate start reference image."/>
         <p>
-          Overview of the proposed DreamIdentity: (a) The training and inference pipeline. The input face image is first encoded into multi-word embeddings (denoted by S*) by our proposed M2 ID encoder. Then S* are associated with the text input to generate face-identity preserved image in the text-aligned scene. (b) The architecture of M2 ID encoder, where a ViT-based face identity encoder is adopted as the backbone and the extracted multi-scale features are projected to multi-word embedding. (c) The composition of the training data and its objectives. The training data consists of a public face dataset for reconstruction and a self-augmented dataset for  editability learning. 
+          The proposed RealCustom introduces a novel “train-inference” decoupled paradigm.
+          Specifically, during training, RealCustom learns general alignment between visual conditions and the original text conditions of pre-trained models. 
+          During inference, based on the learned alignment capability, RealCustom gradually narrow down the generation of the real text words 
+          (e.g., “toy”) into the given subject (e.g., the unique brown sloth toy) by iterative updating each step's influence scope 
+          and influence quantity of the given subject.
           </p>
       </div>
     </div>
