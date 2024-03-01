@@ -339,28 +339,15 @@
           <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
                   frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div> -->
-        <img src="./static/images/comparison_main.png"
+        <img src="./static/images/visualization_main.png"
                  alt="Interpolate start reference image."/>
         <p>
-          RealCustom could produce much higher quality customization results that have better similarity with the given subject 
-          and better controllability with the given text compared to existing works. 
-          Moreover, RealCustom shows superior diversity (different subject poses, locations, etc.) 
-          and generation quality (e.g., the “autumn leaves” scene in the third row).
-        </p>
-
-        <img src="static/images/comparison_quantative.jpg"
-                 alt="Interpolate start reference image."/>
-        <p>
-          <div class="content has-text-left">
-          <b>Quantitative comparisons. </b>
-          <br>
-          <b>Left :</b> Our proposed RealCustom outperforms existing methods in both controllability and similarity.
-          The significant improvement on ImageReward validates that RealCustom could generate customized images with much higher quality (higher aesthetic score); 
-          <br>
-          <b>Right :</b> We plot the “CLIP-T verse DINO”, 
-          showing that the existing methods are trapped into the dual-optimum paradox, 
-          while RealCustom completely get rid of it and achieve both high-quality similarity and controllability.
-          </div>
+          Illustration of gradually narrowing the real words into the given subjects. 
+          RealCustom generated results (first row) and the original text-to-image generated result (second row) by pre-trained models with the same seed. 
+          The mask is visualized by the Top-25% highest attention score regions of the real word “toy”. 
+          We could observe that starting from the same state (the same mask since there's no information of the given subject is introduced at the beginning), 
+          RealCustom gradually forms the structure and details of the given subject by our proposed adaptive mask strategy, 
+          achieving the open-domain zero-shot customization.
         </p>
 
       </div>
