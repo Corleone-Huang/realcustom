@@ -276,11 +276,19 @@
         <img src="./static/images/methods.png"
                  alt="Interpolate start reference image."/>
         <p>
-          <b>Core Idea: </b> disentangles the influence scope of the given subject with the influence scope of the given text.
+          <b>Core Idea: </b> disentangle the influence scope of the <b> given subject </b> from the influence scope of the <b>given text</b>, 
+          by precisely limiting the given subjects to influence only the relevant parts 
+          while maintaining other irreverent ones purely controlled by the given texts, 
+          achieving both high-quality similarity and controllability in a real-time open-domain scenario.
           <br>
-          <b>Training Paradigm: </b> disentangles the influence scope of the given subject with the influence scope of the given text.
+          <b>Training Paradigm: </b> 
+          RealCustom only learns the generalized alignment capabilities between visual conditions and pre-trained models' 
+          original text conditions on large-scale text-image datasets through a novel adaptive scoring module, 
+          which modulates the influence quantity based on text and currently generated features.
           <br>
-          <b>Inference Paradigm: </b> disentangles the influence scope of the given subject with the influence scope of the given text.
+          <b>Inference Paradigm: </b> 
+          real-time customization is achieved by a novel adaptive mask guidance strategy, 
+          which gradually narrows down a real text word based on the learned alignment capabilities.
         </p>
       </div>
     </div>
